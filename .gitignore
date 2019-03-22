@@ -1,0 +1,73 @@
+# NOTE! Don't add files that are generated in specific
+# subdirectories here. Add them in the ".gitignore" file
+# in that subdirectory instead.
+#
+# NOTE! Please use 'git ls-files -i --exclude-standard'
+# command after changing this file, to see if there are
+# any tracked files which get ignored after the change.
+#
+# Normal rules
+#
+*.o
+*.o.*
+*.a
+*.s
+*.ko
+*.so
+*.SO
+*.so.dbg
+*~
+
+*.elf
+*.bin
+*.7z
+*.rar
+*.zip
+*.gz
+*.bzip
+*.bz2
+*.xz
+*.lzma
+*.lzo
+*.lz4
+*.jar
+*.war
+*.ear
+*.class
+*.iso
+*.tar
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
+*.doc
+*.DOC
+*.docx
+*.DOCX
+*.xls
+*.XLS
+*.xlsx
+*.XLSX
+*.PPT
+*.ppt
+*.PPTX
+*.pptx
+*.odp
+*.odt
+*.odg
+*.rtf
+*.RTF
+*.BAK
+*Thumbs.db
+*thumbs.db
+
+.idea
+logs
+*.iml
+*.iws
+*.ipr
+*.ids
+**/target
+sessions
