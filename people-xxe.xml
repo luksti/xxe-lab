@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE people [
-        <!ENTITY xxe SYSTEM "C:/Users/lauriu/">
+        <!ENTITY xxe SYSTEM "harmful code">
         ]>
 <people>
     <address>&xxe;</address>
