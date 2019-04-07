@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!DOCTYPE people [
-        <!ENTITY xxe SYSTEM "harmful code">
-        ]>
-<people>
-    <address>&xxe;</address>
-    <comment>11112222333</comment>
-    <name>Kuri Fail</name>
-</people>

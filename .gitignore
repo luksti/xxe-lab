@@ -70,4 +70,3 @@ logs
 *.ipr
 *.ids
 **/target
-sessions
