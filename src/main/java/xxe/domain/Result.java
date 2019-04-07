@@ -1,18 +1,14 @@
 package xxe.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.annotations.ApiModelProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Result<T> {
 
-    @ApiModelProperty(value = /* "was request processed without errors?" */ "Vastus kas sõnum võeti vastu ilma vigadeta.", required = true)
     private boolean ok;
 
-    @ApiModelProperty(value = /* "error message (if any)" */ "Viga kirjeldav sõnum, kui seda on.")
     private String message;
 
-    @ApiModelProperty(value = /* "main response data (if any)" */ "Teenuse poolt tagastatav info, kui seda on.")
     private T data;
 
     private Result() {}

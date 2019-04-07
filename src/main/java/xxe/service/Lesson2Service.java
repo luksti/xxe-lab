@@ -66,9 +66,6 @@ public class Lesson2Service {
         People people;
         try {
             SAXParserFactory spf = SAXParserFactory.newInstance();
-            spf.setFeature("http://xml.org/sax/features/external-general-entities", false);
-            spf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-            spf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
             Source xmlSource = new SAXSource(spf.newSAXParser().getXMLReader(),
                     new InputSource(new StringReader(xml)));
             JAXBContext jc = JAXBContext.newInstance(People.class);

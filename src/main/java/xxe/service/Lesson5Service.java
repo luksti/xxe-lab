@@ -40,11 +40,10 @@ public class Lesson5Service {
             "</people>";
 
 // based on https://www.programcreek.com/java-api-examples/?class=javax.xml.stream.XMLInputFactory&method=newFactory
-    public void processXml(String xmlString) {
+    void processXml(String xmlString) {
         People people;
                 try {
                     XMLInputFactory xif = XMLInputFactory.newFactory();
-                    xif.setProperty(XMLInputFactory.SUPPORT_DTD, false);
                     XMLStreamReader xmlRead = xif.createXMLStreamReader(new StreamSource(new StringReader(xmlString)));
                     JAXBContext jc = JAXBContext.newInstance(People.class);
                     Unmarshaller um = jc.createUnmarshaller();

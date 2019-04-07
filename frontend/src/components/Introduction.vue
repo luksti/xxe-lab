@@ -1,5 +1,5 @@
 <template>
-  <div class="container h-100">
+  <div class="container h-100" style="color:black">
     <br><br><br>
     <h2>Introduction</h2>
     <br>

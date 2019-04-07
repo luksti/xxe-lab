@@ -1,9 +1,5 @@
 package xxe.service;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,7 +13,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.sax.SAXSource;
-import java.io.IOException;
 import java.io.StringReader;
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
@@ -48,7 +43,7 @@ public class Lesson4Service {
         peopleList2.put(currentId++, people);
     }
 
-    public static final String XXE_XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+    private static final String XXE_XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
             "<!DOCTYPE people [\n" +
             "        <!ENTITY xxe SYSTEM \"http://enos.itcollege.ee/~luksti/XXE/xxe.txt\">\n" +
             "        ]>\n" +
@@ -58,7 +53,7 @@ public class Lesson4Service {
             "    <name>Kuri Fail</name>\n" +
             "</people>";
 
-    public static final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+    private static final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
             "<people>\n" +
             "    <name>Test</name>\n" +
             "    <comment>4248ca35ac8bacafd36a0205c890494a</comment>\n" +
@@ -66,15 +61,10 @@ public class Lesson4Service {
             "</people>";
 
 // based on https://www.codota.com/code/java/classes/org.xml.sax.helpers.XMLReaderFactory
-    public void processXml(String xmlString) {
+    void processXml(String xmlString) {
         People people;
                 try {
                     XMLReader reader = XMLReaderFactory.createXMLReader();
-                    reader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-                    // This may not be strictly required as DTDs shouldn't be allowed at all, per previous line.
-                    reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", true);
-                    reader.setFeature("http://xml.org/sax/features/external-general-entities", true);
-                    reader.setFeature("http://xml.org/sax/features/external-parameter-entities", true);
                     SAXSource source = new SAXSource(reader, new InputSource(new StringReader(xmlString)));
 
                     JAXBContext jc = JAXBContext.newInstance(People.class);

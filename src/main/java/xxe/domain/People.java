@@ -7,10 +7,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "people")
 public class People {
 
-    int id;
-    String name;
-    String address;
-    String comment;
+    private int id;
+    private String name;
+    private String address;
+    private String comment;
 
     @JsonIgnore
     public int getId() {

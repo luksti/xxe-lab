@@ -12,7 +12,7 @@ import xxe.service.*;
 @RestController
 public class XmlController {
 
-    public static final String SOLUTION_IS_INCORRECT = "Solution is incorrect";
+    private static final String SOLUTION_IS_INCORRECT = "Solution is incorrect";
     private final Lesson1Service lesson1Service;
     private final Lesson2Service lesson2Service;
     private final Lesson3Service lesson3Service;

@@ -3,28 +3,18 @@ package xxe.service;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
-import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.xml.sax.SAXException;
 import xxe.domain.People;
 
-import java.io.File;
 import java.io.StringReader;
-import java.lang.invoke.MethodHandles;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class Lesson3Service {
-
-    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private static final Map<Integer, People> peopleList2 = new ConcurrentHashMap<>();
     private static volatile int currentId = 0;
@@ -65,12 +55,7 @@ public class Lesson3Service {
     public void processXml(String xmlString) {
                 try {
                     SAXReader reader = new SAXReader();
-                    reader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-                    reader.setFeature("http://xml.org/sax/features/external-general-entities", false);
-                    reader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-
                     Document document = reader.read(new StringReader(xmlString));
-
                     Element rootElement = document.getRootElement();
 
                     List<Element> elements = rootElement.elements();
@@ -88,7 +73,7 @@ public class Lesson3Service {
                     }
                     newPeople.setId(currentId);
                     peopleList2.put(currentId++, newPeople);
-                } catch (DocumentException | SAXException  e) {
+                } catch (DocumentException  e) {
                     e.printStackTrace();
                 }
     }
