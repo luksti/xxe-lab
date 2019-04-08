@@ -9,9 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 import xxe.domain.Result;
 import xxe.service.*;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*")
 @RestController
-@Controller
 public class XmlController {
 
     private static final String SOLUTION_IS_INCORRECT = "Solution is incorrect";
