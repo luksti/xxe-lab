@@ -104,9 +104,6 @@ public class Lesson2Service {
             }
         }
 
-        //checking if the application is running normally
-
-
         return !xxeResult && xxeFreeResult;
     }
 
