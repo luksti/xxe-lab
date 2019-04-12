@@ -1,7 +1,9 @@
 package xxe.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xxe.domain.People;
+import xxe.constants.Constants;
+import xxe.domain.Person;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -19,66 +21,44 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class Lesson5Service {
 
-    private static final Map<Integer, People> peopleList = new ConcurrentHashMap<>();
+    private static final Map<Integer, Person> peopleList = new ConcurrentHashMap<>();
     private static volatile int currentId = 0;
+    private final ZxcService zxcService;
 
-    private static final String XXE_XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-            "<!DOCTYPE people [\n" +
-            "        <!ENTITY xxe SYSTEM \"http://enos.itcollege.ee/~luksti/XXE/xxe.txt\">\n" +
-            "        ]>\n" +
-            "<people>\n" +
-            "    <address>&xxe;</address>\n" +
-            "    <comment>11112222333</comment>\n" +
-            "    <name>Kuri Fail</name>\n" +
-            "</people>";
-
-    private static final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-            "<people>\n" +
-            "    <name>Test</name>\n" +
-            "    <comment>4248ca35ac8bacafd36a0205c890494a</comment>\n" +
-            "    <address>Lauri Bentley</address>\n" +
-            "</people>";
+    @Autowired
+    public Lesson5Service(ZxcService zxcService) {
+        this.zxcService = zxcService;
+    }
 
 // based on https://www.programcreek.com/java-api-examples/?class=javax.xml.stream.XMLInputFactory&method=newFactory
     void processXml(String xmlString) {
-        People people;
+        Person person;
                 try {
                     XMLInputFactory xif = XMLInputFactory.newFactory();
                     XMLStreamReader xmlRead = xif.createXMLStreamReader(new StreamSource(new StringReader(xmlString)));
-                    JAXBContext jc = JAXBContext.newInstance(People.class);
+                    JAXBContext jc = JAXBContext.newInstance(Person.class);
                     Unmarshaller um = jc.createUnmarshaller();
-                    people = (People) um.unmarshal(xmlRead);
-                    people.setId(currentId);
-                    peopleList.put(currentId++, people);
+                    person = (Person) um.unmarshal(xmlRead);
+                    person.setId(currentId);
+                    peopleList.put(currentId++, person);
                 } catch (JAXBException | XMLStreamException e) {
                     e.printStackTrace();
                 }
     }
 
-    public List<People> getPeople() {
-        List<People> result = new ArrayList<>();
-        for (Map.Entry<Integer, People> entry : peopleList.entrySet()) {
+    public List<Person> getPeople() {
+        List<Person> result = new ArrayList<>();
+        for (Map.Entry<Integer, Person> entry : peopleList.entrySet()) {
             result.add(entry.getValue());
         }
         return result;
     }
 
     public boolean checkSolution() {
-        boolean xxeResult = false;
-        boolean xxeFreeResult = false;
-        processXml(XML);
-        processXml(XXE_XML);
+        processXml(Constants.XML);
+        processXml(Constants.XXE_XML);
 
-        for (People person : getPeople()) {
-            if (person.getComment().equals("4248ca35ac8bacafd36a0205c890494a")) {
-                xxeFreeResult = true;
-            }
-            if (person.getAddress().equals("82bf75b9d118715a9094064cefac3fd7")) {
-                xxeResult = true;
-            }
-        }
-
-        return !xxeResult && xxeFreeResult;
+        return zxcService.checkSolution(Constants.OBJ2, getPeople());
     }
 
 }

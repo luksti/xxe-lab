@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "people")
-public class People {
+@XmlRootElement(name = "person")
+public class Person {
 
     private int id;
     private String name;

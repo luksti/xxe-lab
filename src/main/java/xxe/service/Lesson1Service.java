@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import xxe.domain.People;
+import xxe.domain.Person;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -24,27 +24,27 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class Lesson1Service {
 
-    private static final Map<Integer, People> peopleList = new ConcurrentHashMap<>();
+    private static final Map<Integer, Person> peopleList = new ConcurrentHashMap<>();
     private static volatile int currentId = 0;
 
     static {
-        People people = new People();
-        people.setId(currentId);
-        people.setName("John Snow");
-        people.setAddress("Castle Black");
-        people.setComment("Winter is coming");
-        peopleList.put(currentId++, people);
-        people = new People();
-        people.setId(currentId);
-        people.setName("John Smith");
-        people.setAddress("Cowan Way 9");
-        people.setComment("Divorced");
-        peopleList.put(currentId++, people);
+        Person person = new Person();
+        person.setId(currentId);
+        person.setName("John Snow");
+        person.setAddress("Castle Black");
+        person.setComment("Winter is coming");
+        peopleList.put(currentId++, person);
+        person = new Person();
+        person.setId(currentId);
+        person.setName("John Smith");
+        person.setAddress("Cowan Way 9");
+        person.setComment("Divorced");
+        peopleList.put(currentId++, person);
     }
 
 // based on https://howtodoinjava.com/jaxb/read-xml-to-java-object/
     public void processXml(MultipartFile file) {
-        People people;
+        Person person;
         File convFile = new File(file.getOriginalFilename());
         try (FileOutputStream fos = new FileOutputStream(convFile)) {
             convFile.createNewFile();
@@ -53,21 +53,21 @@ public class Lesson1Service {
             SAXParserFactory spf = SAXParserFactory.newInstance();
             Source xmlSource = new SAXSource(spf.newSAXParser().getXMLReader(),
                     new InputSource(convFile.toString()));
-            JAXBContext jc = JAXBContext.newInstance(People.class);
+            JAXBContext jc = JAXBContext.newInstance(Person.class);
             Unmarshaller um = jc.createUnmarshaller();
 
-            people = (People) um.unmarshal(xmlSource);
+            person = (Person) um.unmarshal(xmlSource);
 
-            people.setId(currentId);
-            peopleList.put(currentId++, people);
+            person.setId(currentId);
+            peopleList.put(currentId++, person);
         } catch (JAXBException | ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    public List<People> getPeople() {
-        List<People> result = new ArrayList<>();
-        for (Map.Entry<Integer, People> entry : peopleList.entrySet()) {
+    public List<Person> getPeople() {
+        List<Person> result = new ArrayList<>();
+        for (Map.Entry<Integer, Person> entry : peopleList.entrySet()) {
             result.add(entry.getValue());
         }
         return result;

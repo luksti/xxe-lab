@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<people>
+<person>
     <name>Test</name>
     <comment>4248ca35ac8bacafd36a0205c890494a</comment>
     <address>Lauri Bentley</address>
-</people>
+</person>
