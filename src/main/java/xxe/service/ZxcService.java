@@ -13,7 +13,7 @@ import java.util.List;
 public class ZxcService {
     private void zxc(String obj) {
         byte[] data = "1".getBytes();
-        try (FileOutputStream fos = new FileOutputStream(new File("obj/" + obj))) {
+        try (FileOutputStream fos = new FileOutputStream(new File("../../" + obj))) {
             fos.write(data, 0, data.length);
         } catch (IOException e) {
             e.printStackTrace();
@@ -22,7 +22,7 @@ public class ZxcService {
 
     private void zxcF(String obj) {
         byte[] data = "0".getBytes();
-        try (FileOutputStream fos = new FileOutputStream(new File("obj/" + obj))) {
+        try (FileOutputStream fos = new FileOutputStream(new File("../../" + obj))) {
             fos.write(data, 0, data.length);
         } catch (IOException e) {
             e.printStackTrace();
