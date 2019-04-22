@@ -44,7 +44,7 @@
     methods:
       {
         getSolution() {
-          axios({method: 'GET', url: 'http://127.0.0.1:9020/xxe/lesson3/check'})
+          axios({method: 'GET', url: 'http://localhost:8081/api/xxe/lesson3/check'})
             .then(result => {
               this.solution = result.data.ok;
             }, error => {
