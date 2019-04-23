@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import xxe.domain.Result;
 import xxe.service.*;
 
+@CrossOrigin("*")
 @RestController
 public class XmlController {
 

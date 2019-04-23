@@ -6,14 +6,15 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
+    https: true,
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       '/xxe': {
-        target: 'http://localhost:9020',
-        changeOrigin: true
+        target: 'https://localhost',
+        changeOrigin: true,
+        secure: false
       }
     },
 
@@ -59,7 +60,7 @@ module.exports = {
 
     proxyTable: {
       '/xxe': {
-        target: 'http://localhost:9020',
+        target: 'https://localhost',
         changeOrigin: true
       }
     },
