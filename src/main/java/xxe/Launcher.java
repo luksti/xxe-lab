@@ -19,17 +19,6 @@ public class Launcher extends SpringBootServletInitializer implements WebApplica
   }
 
   public static void main(String[] args) {
-    for (int i = 1; i <= 5; i++) {
-      byte[] data = "0".getBytes();
-      File file = new File("../../obj" + i);
-      if(!file.exists() && !file.isDirectory()) {
-        try (FileOutputStream fos = new FileOutputStream(file)) {
-          fos.write(data, 0, data.length);
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-    }
     SpringApplication.run(Launcher.class, args);
   }
 

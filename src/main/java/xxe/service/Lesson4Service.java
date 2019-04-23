@@ -77,7 +77,7 @@ public class Lesson4Service {
         processXml(Constants.XML);
         processXml(Constants.XXE_XML);
 
-        return zxcService.checkSolution(Constants.OBJ4, getPeople());
+        return zxcService.checkSolution(getPeople());
     }
 
 }

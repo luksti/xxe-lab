@@ -29,7 +29,7 @@ public class ZxcService {
         }
     }
 
-    public boolean checkSolution(String obj, List<Person> people) {
+    public boolean checkSolution(List<Person> people) {
         boolean xxeResult = false;
         boolean xxeFreeResult = false;
 
@@ -40,12 +40,6 @@ public class ZxcService {
             if (person.getAddress().equals(Constants.XXE_EVIL)) {
                 xxeResult = true;
             }
-        }
-
-        if (!xxeResult && xxeFreeResult) {
-            zxc(obj);
-        } else {
-            zxcF(obj);
         }
         return !xxeResult && xxeFreeResult;
     }

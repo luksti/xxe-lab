@@ -83,7 +83,7 @@ public class Lesson3Service {
         processXml(Constants.XML);
         processXml(Constants.XXE_XML);
 
-        return zxcService.checkSolution(Constants.OBJ3, getPeople());
+        return zxcService.checkSolution(getPeople());
     }
 
 }

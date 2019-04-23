@@ -58,7 +58,7 @@ public class Lesson5Service {
         processXml(Constants.XML);
         processXml(Constants.XXE_XML);
 
-        return zxcService.checkSolution(Constants.OBJ2, getPeople());
+        return zxcService.checkSolution(getPeople());
     }
 
 }

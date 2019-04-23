@@ -20,9 +20,4 @@ public class Constants {
 
     public static final String XXE_FREE = "4248ca35ac8bacafd36a0205c890494a";
     public static final String XXE_EVIL = "82bf75b9d118715a9094064cefac3fd7";
-    public static final String OBJ1 = "obj1";
-    public static final String OBJ2 = "obj2";
-    public static final String OBJ3 = "obj3";
-    public static final String OBJ4 = "obj4";
-    public static final String OBJ5 = "obj5";
 }
