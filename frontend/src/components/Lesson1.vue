@@ -48,7 +48,7 @@
       }
     },
     mounted() {
-      axios({method: 'GET', url: 'http://localhost:8081/api/xxe/lesson1/people'})
+      axios({method: 'GET', url: 'http://192.168.6.2/xxe/lesson1/people'})
         .then(result => {
           this.people = result.data.data;
         }, error => {
@@ -59,7 +59,7 @@
     methods:
       {
         getPersons() {
-          axios({method: 'GET', url: 'http://localhost:8081/api/xxe/lesson1/people'})
+          axios({method: 'GET', url: 'http://192.168.6.2/xxe/lesson1/people'})
             .then(result => {
               this.people = result.data.data;
             }, error => {
@@ -69,7 +69,7 @@
         addPersion() {
           let formData = new FormData();
           formData.append('file', this.file);
-          axios({ method: "POST", "url": "http://localhost:8081/api/xxe/lesson1/create", "data": formData, "headers": { "content-type": "multipart/form-data" } }).then(result => {
+          axios({ method: "POST", "url": "http://192.168.6.2/xxe/lesson1/create", "data": formData, "headers": { "content-type": "multipart/form-data" } }).then(result => {
           }, error => {
             console.error(error);
           }).then(this.getPersons);
